@@ -1,0 +1,18 @@
+Overview
+========
+django-hpc is a Django application which allows you to create custom methods to execute processes on a high-performance computing system.  It is intended to be flexible enough to use for your own projects, but will include a "normal workflow" example.
+
+Architecture
+============
+
+Models
+------
+The core of django-hpc will be an abstract base class Django model which will keep track of job status.  You will inherit from this model, add any additional fields you wish, override the necessary methods, and then create instances of that model to represent your HPC jobs.
+
+Job Scheduer Interface
+----------------------
+Another key component is the job scheduler interface process which talks to various HPC schedulers (such as LSF, SGE, Torque/Maui, etc) to submit jobs and when finished, call the cleanup function for the model.
+
+Views
+-----
+Obviously viewing the state of your job (and eventually perhaps the state of the cluster itself) is a very important thing for a user to be able to do.  Therefore a set of views which display a list of the status of a user's HPC jobs is included.
